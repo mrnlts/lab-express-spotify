@@ -90,3 +90,28 @@ button {
     border-radius: 5%;
     width: 50%;
 }
+
+#tracks {
+    width: 80%;
+    margin: 3rem;
+}
+
+#tracks-title {
+    font-size: 1.5rem;
+    background-color: grey;
+    color: white;
+}
+
+#tracks-title {
+    display: flex;
+    justify-content: space-around;
+    height: 2rem;
+
+}
+
+
+#individual-track {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}

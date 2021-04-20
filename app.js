@@ -51,5 +51,18 @@ app.get( '/albums/:id', ( req, res, next ) => {
     .catch( err => console.log( 'There was an error retrieving the albums: ', err ));
 });
 
+// Tracks
+app.get( '/tracks/:id', ( req, res, next ) => {
+  spotifyApi
+    .getAlbumTracks( req.params.id )
+    .then( data => {
+      const tracks = {
+        track: data.body.items
+      };
+      res.render( 'tracks', tracks )
+    })
+    .catch( err => console.log( 'There was an error retrieving the tracks: ', err ));
+});
+
 
 app.listen( 3000, () => console.log( 'My Spotify project running on port 3000 🎧 🥁 🎸 🔊' ));

@@ -2,8 +2,10 @@
     {{#each album }}
         <div id="individual-result">
             <img src="{{ this.images.0.url }}" alt="album-cover">
-            <h2>{{ this.name }}</h2>
-            <button type="submit"> View tracks </button>
+            <h2> {{ this.name }} </h2>
+            <form action="/tracks/{{ this.id }}" method="GET">
+                <input type="submit" name="check-tracks" value="View tracks">
+            </form>
         </div>
     {{/each }}
 </div>
