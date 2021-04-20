@@ -9,7 +9,7 @@ const app = express();
 
 app.set( 'view engine', 'hbs' );
 app.set( 'views', path.join( __dirname, '/views' ));
-app.use(express.static( path.join(__dirname, '/public' )));
+app.use( express.static( path.join(__dirname, '/public' )));
 
 const spotifyApi = new SpotifyWebApi({
     clientId: process.env.CLIENT_ID,
@@ -22,24 +22,34 @@ spotifyApi
   .then( data => spotifyApi.setAccessToken( data.body [ 'access_token' ]))
   .catch( error => console.log( 'Something went wrong when retrieving an access token', error ));
 
-// Our routes go here:
+// Homepage
+app.get('/', ( req, res, next ) => res.render( 'home' ));
 
-//homepage
-app.get('/', (req, res, next) => res.render('home'));
-
-//search results
-app.get('/artist-search', (req, res, next) => {
-    spotifyApi
-        .searchArtists(req.query.artist)
-        .then(data => {
-
-        console.log('The received data from the API: ', data.body);
-        const searchResults = {
-            artist: data.body.artists.items
-        };
-        res.render('artist-search-results', searchResults);
-  })
-  .catch(err => console.log('The error while searching artists occurred: ', err));
+// Search results
+app.get( '/artist-search', ( req, res, next ) => {
+  spotifyApi
+    .searchArtists( req.query.artist )
+    .then(data => {
+      const searchResults = {
+          artist: data.body.artists.items
+      };
+      res.render( 'artist-search-results', searchResults );
+    })
+    .catch( err => console.log( 'An error ocurred while searching artists: ', err ));
 });
+
+// Albums
+app.get( '/albums/:id', ( req, res, next ) => {
+  spotifyApi
+    .getArtistAlbums( req.params.id )
+    .then( data => {
+      const albums = {
+        album: data.body.items
+      };
+      res.render( 'albums', albums )
+    })
+    .catch( err => console.log( 'There was an error retrieving the albums: ', err ));
+});
+
 
 app.listen( 3000, () => console.log( 'My Spotify project running on port 3000 🎧 🥁 🎸 🔊' ));

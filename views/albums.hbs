@@ -1,0 +1,9 @@
+<div id="search-results">
+    {{#each album }}
+        <div id="individual-result">
+            <img src="{{ this.images.0.url }}" alt="album-cover">
+            <h2>{{ this.name }}</h2>
+            <button type="submit"> View tracks </button>
+        </div>
+    {{/each }}
+</div>

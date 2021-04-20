@@ -20,6 +20,13 @@ body {
 
 }
 
+#artist-search {
+    background-size: contain;
+    width: 70rem;
+    height: 10rem;
+    padding-top: 5rem;
+}
+
 form {
     font-family: serif;
     width: 100%;
@@ -64,13 +71,21 @@ button {
 
 #individual-result > img {
     width: 100%;
-    height: 70%;
+    height: 80%;
 }
 
 #individual-result > h2 {
     font-size: 1.5rem;
 }
-#individual-result > button {
+#individual-result > form,
+#individual-result > form > input {
+    background-color: tomato;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#individual-result > form {
     margin-bottom: 1rem;
     border-radius: 5%;
     width: 50%;

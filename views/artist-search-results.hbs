@@ -1,13 +1,15 @@
 <ul id="search-results">
-    {{#each artist}}
+    {{#each artist }}
         <div id="individual-result">
-            {{#if this.images.0.url}}
-                <img src="{{this.images.0.url}}" alt="artist-image">
-            {{else}}
+            {{#if this.images.0.url }}
+                <img src="{{ this.images.0.url }}" alt="artist-image">
+            {{else }}
                 <img src="https://alumni.crg.eu/sites/default/files/default_images/default-picture_0_0.png" alt="artist-image">
-            {{/if}}
-            <h2>{{this.name}}</h2>
-            <button type="submit">View albums</button>
+            {{/if }}
+            <h2> {{ this.name }} </h2>
+            <form action="/albums/{{ this.id }}" method="GET">
+                <input type="submit" name="check-album" value="View albums">
+            </form>
         </div>
-    {{/each}}
+    {{/each }}
 </ul>
